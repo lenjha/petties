@@ -1,9 +1,10 @@
 import React from 'react';
+import Nest from './Nest';
 
 function App() {
   return (
     <div>
-      Petties
+      <Nest />
     </div>
   );
 }
