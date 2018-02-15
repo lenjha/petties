@@ -19,28 +19,28 @@ class Nest extends React.Component {
     this.updateHappiness = this.updateHappiness.bind(this);
     this.updateEnergy = this.updateEnergy.bind(this);
     this.updateHealth = this.updateHealth.bind(this);
-
+    this.handleFeedClick = this.handleFeedClick.bind(this);
   }
 
   componentDidMount() {
-    this.hungerIntervals = setInterval(() =>
+    setInterval(() =>
       this.updateHunger(),
-    50
+    1300
     );
-    this.happinessIntervals = setInterval(() =>
+    setInterval(() =>
       this.updateHappiness(),
-    50
+    700
     );
-    this.energyIntervals = setInterval(() =>
+    setInterval(() =>
       this.updateEnergy(),
-    100
+    1000
     );
-    // this.healthIntervals = setInterval(() =>
-    //   this.updateHealth(),
-    // 1000
-    // );
   }
 
+  handleFeedClick() {
+    let feed = this.state.satiety + 70;
+    this.setState({satiety: feed });
+  }
 
   updateHunger() {
     let newSatiety = this.state.satiety;
@@ -51,6 +51,7 @@ class Nest extends React.Component {
     }
     this.setState({satiety : newSatiety});
   }
+
   updateHappiness() {
     let newHappiness = this.state.happiness;
     if (this.state.happiness > 0) {
@@ -60,6 +61,7 @@ class Nest extends React.Component {
     }
     this.setState({happiness : newHappiness});
   }
+
   updateEnergy() {
     let newEnergy = this.state.energy;
     if (this.state.energy > 0) {
@@ -70,7 +72,6 @@ class Nest extends React.Component {
     this.setState({energy : newEnergy});
   }
 
-
   updateHealth() {
     let newHealth = this.state.health;
     newHealth = this.state.satiety + this.state.happiness + this.state.energy;
@@ -79,17 +80,15 @@ class Nest extends React.Component {
       clearInterval(this.hungerIntervals);
       clearInterval(this.happinessIntervals);
       clearInterval(this.energyIntervals);
-      console.log('DED');
     }
   }
-
 
 
   render(){
     return(
       <div>
         <Display pet={this.state}/>
-        <Controls />
+        <Controls onFeedButtonPass={this.handleFeedClick}/>
       </div>
     );
   }
