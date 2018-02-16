@@ -16,14 +16,16 @@ function Controls(props) {
         align-items: center;
       `}</style>
       <FeedButton onFeedButton={props.onFeedButtonPass}/>
-      <PlayButton />
-      <NapButton />
+      <PlayButton onPlayButton={props.onPlayButtonPass}/>
+      <NapButton onNapButton={props.onNapButtonPass}/>
     </div>
   );
 }
 
 Controls.propTypes = {
-  onFeedButtonPass: PropTypes.func
+  onFeedButtonPass: PropTypes.func,
+  onPlayButtonPass: PropTypes.func,
+  onNapButtonPass: PropTypes.func
 };
 
 export default Controls;

@@ -3,6 +3,7 @@ import Moment from 'moment';
 import Display from './Display';
 import Controls from './Controls';
 import riakImg from './../assets/images/pets/riak.png';
+import drinkMilk from './../assets/images/riak_drinking.png';
 
 class Nest extends React.Component {
   constructor(props){
@@ -20,6 +21,8 @@ class Nest extends React.Component {
     this.updateEnergy = this.updateEnergy.bind(this);
     this.updateHealth = this.updateHealth.bind(this);
     this.handleFeedClick = this.handleFeedClick.bind(this);
+    this.handlePlayClick = this.handlePlayClick.bind(this);
+    this.handleNapClick = this.handleNapClick.bind(this);
   }
 
   componentDidMount() {
@@ -37,9 +40,25 @@ class Nest extends React.Component {
     );
   }
 
+  // feedAnimation(){
+  //   let image = this.state.image;
+  //   this.setState({image : drinkMilk});
+  // }
+
   handleFeedClick() {
-    let feed = this.state.satiety + 70;
+    let feed = this.state.satiety + 40;
     this.setState({satiety: feed });
+  }
+
+
+  handlePlayClick(){
+    let play = this.state.happiness + 30;
+    this.setState({happiness: play});
+  }
+
+  handleNapClick(){
+    let nap = this.state.energy + 50;
+    this.setState({energy: nap});
   }
 
   updateHunger() {
@@ -88,7 +107,7 @@ class Nest extends React.Component {
     return(
       <div>
         <Display pet={this.state}/>
-        <Controls onFeedButtonPass={this.handleFeedClick}/>
+        <Controls onFeedButtonPass={this.handleFeedClick} onPlayButtonPass={this.handlePlayClick} onNapButtonPass={this.handleNapClick}/>
       </div>
     );
   }
